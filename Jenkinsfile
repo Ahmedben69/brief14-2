@@ -1,16 +1,5 @@
 pipeline {
     agent any
-      parameters
-    {
-         choice choices: ['apply', 'destroy'], name: 'Action'                
-    }
-    
-    stages {
-        stage ('git') {
-           steps {
-                checkout scm
-            }
-        }
         
         stage ('Build Image') {
             steps {
@@ -44,7 +33,7 @@ pipeline {
                 }    
             }
         } 
-        stage ('Terraform apply/destroy Staging') {
+        stage ('Terraform apply Staging') {
           steps {
                script {
                     sh "cd StagingEnvironment && terraform ${params.Action} -auto-approve"        
@@ -63,7 +52,7 @@ pipeline {
                 }    
             }
         } 
-        stage ('Terraform apply/destroy Prod') {
+        stage ('Terraform apply Prod') {
           steps {
                script {
                     sh "cd ProdEnvironment && terraform ${params.Action} -auto-approve"
