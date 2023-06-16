@@ -7,8 +7,8 @@ pipeline {
                  script {
                       sh "sudo docker build -t ahmed-brief14 ."       
                  }
-                }                
-            }
+            }                
+        }
     
         stage ('Push Image') {
             steps {
