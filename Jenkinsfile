@@ -13,7 +13,7 @@ pipeline {
         stage ('Push Image') {
             steps {
                 script {
-                    sh "sudo docker login -u bainos69 -p dckr_pat_TjpHATmjKOBWT57D5CPv7AoPQtw"        
+                    sh "sudo docker login -u bainos69 -p Supersayien69"        
                     sh "sudo docker push bainos69/brief14"
                 }
             }
