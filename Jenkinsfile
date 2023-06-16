@@ -5,7 +5,7 @@ pipeline {
         stage ('Build Image') {
             steps {
                  script {
-                      sh "docker build -t brief14 ."       
+                      sh "sudo docker build -t brief14 ."       
                  }
                 }                
             }
@@ -13,8 +13,8 @@ pipeline {
         stage ('Push Image') {
             steps {
                 script {
-                    sh "docker login -u bainos69 -p dckr_pat_TjpHATmjKOBWT57D5CPv7AoPQtw"        
-                    sh "docker push bainos69/brief14"
+                    sh "sudo docker login -u bainos69 -p dckr_pat_TjpHATmjKOBWT57D5CPv7AoPQtw"        
+                    sh "sudo docker push bainos69/brief14"
                 }
             }
         }
