@@ -6,7 +6,7 @@ pipeline {
     }
     
     /*environment {
-        MY_CRED = credentials('f2d10700-72b4-4064-b1d8-1a4882c4f29f')        /*Appel des credentials Jenkins correspondant au service principal Azure*/
+        MY_CRED = credentials('f2d10700-72b4-4064-b1d8-1a4882c4f29f')        
      }*/
     
     stages {
