@@ -11,11 +11,11 @@ pipeline {
     
     stages {
 
-         stage ('Clone') {
-              steps {
-                    checkout scm                     
-              }
-         }
+        stage('git') {
+            steps {
+                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/Ahmedben69/brief14-2']])
+            }
+        }
         
         stage ('Build Image') {
             steps {
