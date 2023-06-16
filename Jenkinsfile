@@ -5,13 +5,8 @@ pipeline {
          choice choices: ['apply', 'destroy'], name: 'Action'                
     }
     
-    /*environment {
-        MY_CRED = credentials('f2d10700-72b4-4064-b1d8-1a4882c4f29f')        
-     }*/
-    
     stages {
-
-        stage('git') {
+        stage ('git') {
             steps {
                 checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/Ahmedben69/brief14-2']])
             }
