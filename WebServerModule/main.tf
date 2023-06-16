@@ -1,5 +1,5 @@
 resource "azurerm_resource_group" "webserver" {
-   name = "LAST-Python-App-${var.environment}"
+   name = "ahmed-benbrief14-${var.environment}"
    location = var.location
 }
 
