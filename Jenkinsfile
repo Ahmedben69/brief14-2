@@ -5,7 +5,7 @@ pipeline {
         stage ('Build Image') {
             steps {
                  script {
-                      sh "sudo docker build -t brief14 ."       
+                      sh "sudo docker build -t ahmed-brief14 ."       
                  }
                 }                
             }
@@ -14,7 +14,7 @@ pipeline {
             steps {
                 script {
                     sh "sudo docker login -u bainos69 -p Supersayien69"        
-                    sh "sudo docker push bainos69/brief14"
+                    sh "sudo docker push bainos69/ahmed-brief14"
                 }
             }
         }
