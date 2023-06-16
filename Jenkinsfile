@@ -5,7 +5,7 @@ pipeline {
         stage ('Build Image') {
             steps {
                  script {
-                      docker.build("bainos69/brief14")        
+                      sh "docker build -t brief14 ."       
                  }
                 }                
             }
