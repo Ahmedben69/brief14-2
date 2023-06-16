@@ -2,7 +2,7 @@ pipeline {
     agent any
       parameters
     {
-         choice choices: ['apply', 'destroy'], name: 'Action'                /*Parametre choix permettant de définir si on apply/destroy pour terraform*/
+         choice choices: ['apply', 'destroy'], name: 'Action'                
     }
     
     /*environment {
@@ -13,14 +13,14 @@ pipeline {
 
          stage ('Clone') {
               steps {
-                   checkout scm                        /*Clone et lecture à partir de Jenkinsfile disponible sur GitHub*/ 
+                   checkout scm                        
               }
          }
         
         stage ('Build Image') {
             steps {
                  script {
-                      docker.build("bainos69/brief14")        /*Build et tag de l'image à partir du Dockerfile présent*/
+                      docker.build("bainos69/brief14")        
                  }
                 }                
             }
@@ -28,7 +28,7 @@ pipeline {
         stage ('Push Image') {
             steps {
                 script {
-                    sh "docker login -u bainos69 -p dckr_pat_TjpHATmjKOBWT57D5CPv7AoPQtw"        /*Login à DockerHub et push de l'image*/
+                    sh "docker login -u bainos69 -p dckr_pat_TjpHATmjKOBWT57D5CPv7AoPQtw"        
                     sh "docker push bainos69/brief14"
                 }
             }
@@ -37,7 +37,7 @@ pipeline {
         /*stage ('AZ Login') {
                steps {
                     script {
-                         sh "az login --service-principal -u $MY_CRED_CLIENT_ID -p $MY_CRED_CLIENT_SECRET -t $MY_CRED_TENANT_ID"        /* Login à azure grâce aux crédential crées dans Jenkins*/
+                         sh "az login --service-principal -u $MY_CRED_CLIENT_ID -p $MY_CRED_CLIENT_SECRET -t $MY_CRED_TENANT_ID"       
                     }
                }
           }*/
@@ -45,26 +45,26 @@ pipeline {
         stage ('Terraform init Staging') {
             steps {
                 script {
-                    sh "cd StagingEnvironment && terraform init -upgrade"            /*Se rend dans le module Parent(StagingEnvironment) contenant le provider pour executer la commande terraform init*/
+                    sh "cd StagingEnvironment && terraform init -upgrade"           
                 }    
             }
         } 
         stage ('Terraform apply/destroy Staging') {
           steps {
                script {
-                    sh "cd StagingEnvironment && terraform ${params.Action} -auto-approve"        /*${params.Action} est une variable, elle correspond au paramètre "choix", apply ou destroy*/
+                    sh "cd StagingEnvironment && terraform ${params.Action} -auto-approve"        
                }
            }
       }
         stage('Sanity check') {
              steps {
-                 input "Does the staging environment is ${params.Action}ed?"                /*input correspond à la question posée à l'utilisateur pour determiner si il continue à lire et executer le Jenkinsfile*/ 
+                 input "Does the staging environment is ok?"              
             }
         }
         stage ('Terraform init Prod') {
             steps {
                 script {
-                    sh "cd ProdEnvironment && terraform init -upgrade"                    /*Mêmes commandes pour l'environnement Production*/
+                    sh "cd ProdEnvironment && terraform init -upgrade"                    
                 }    
             }
         } 
