@@ -13,7 +13,7 @@ pipeline {
 
          stage ('Clone') {
               steps {
-                   checkout scm                        
+                    checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/Ahmedben69/Brief141']])                     
               }
          }
         
